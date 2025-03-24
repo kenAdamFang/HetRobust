@@ -1,0 +1,538 @@
+[INFO 17:20:07] pymarl Running command 'my_main'
+[INFO 17:20:07] pymarl Started run with ID "1"
+[DEBUG 17:20:07] pymarl Starting Heartbeat
+[DEBUG 17:20:07] my_main Started
+[INFO 17:20:07] my_main Experiment Parameters:
+[INFO 17:20:07] my_main 
+
+{   'action_selector': 'epsilon_greedy',
+    'action_tamper': 0.01,
+    'agent': 'hpns_rnn',
+    'agent_output_type': 'q',
+    'asn_hidden_size': 32,
+    'attend_reg_coef': 0.01,
+    'batch_size': 128,
+    'batch_size_run': 8,
+    'buffer_cpu_only': True,
+    'buffer_size': 5000,
+    'checkpoint_path': '',
+    'cpu_inference': True,
+    'critic_lr': 0.0005,
+    'double_q': True,
+    'enable_parallel_computing': False,
+    'env': 'sc2',
+    'env_args': {   'continuing_episode': False,
+                    'debug': False,
+                    'difficulty': '7',
+                    'game_version': None,
+                    'heuristic_ai': False,
+                    'heuristic_rest': False,
+                    'map_name': 'MMM2',
+                    'move_amount': 2,
+                    'obs_all_health': True,
+                    'obs_instead_of_state': False,
+                    'obs_last_action': False,
+                    'obs_own_health': True,
+                    'obs_pathing_grid': False,
+                    'obs_terrain_height': False,
+                    'obs_timestep_number': False,
+                    'replay_dir': '',
+                    'replay_prefix': '',
+                    'reward_death_value': 10,
+                    'reward_defeat': 0,
+                    'reward_negative_scale': 0.5,
+                    'reward_only_positive': True,
+                    'reward_scale': True,
+                    'reward_scale_rate': 20,
+                    'reward_sparse': False,
+                    'reward_win': 200,
+                    'seed': 654445022,
+                    'state_last_action': True,
+                    'state_timestep_number': False,
+                    'step_mul': 8},
+    'epsilon_anneal_time': 100000,
+    'epsilon_finish': 0.05,
+    'epsilon_start': 1.0,
+    'evaluate': False,
+    'gamma': 0.99,
+    'grad_norm_clip': 10,
+    'hpn_head_num': 1,
+    'hpn_hyper_activation': 'relu',
+    'hpn_hyper_dim': 64,
+    'hypernet_embed': 64,
+    'label': 'default_label',
+    'learner': 'MyAlg_learner',
+    'learner_log_interval': 10000,
+    'load_step': 0,
+    'local_results_path': 'results',
+    'log_interval': 10000,
+    'lr': 0.001,
+    'mac': 'hpn_mac',
+    'mask_dead': False,
+    'mixer': 'myalg_mixer',
+    'mixing_embed_dim': 32,
+    'n_agents_to_tamper': 1,
+    'n_groups': 3,
+    'n_heads': 4,
+    'name': 'myalg',
+    'nonlinear': False,
+    'obs_agent_id': True,
+    'obs_last_action': False,
+    'obs_tamper': [   0.8,
+                      0.5],
+    'optim_alpha': 0.99,
+    'optim_eps': 1e-05,
+    'optimizer': 'adam',
+    'q_lambda': False,
+    'repeat_id': 1,
+    'rnn_hidden_dim': 64,
+    'run': 'default',
+    'runner': 'parallel_MyAlg',
+    'runner_log_interval': 10000,
+    'save_model': True,
+    'save_model_interval': 1000000,
+    'save_replay': False,
+    'seed': 654445022,
+    'state_bias': True,
+    't_max': 10050000,
+    'tamper': True,
+    'target_update_interval': 200,
+    'td_lambda': 0.6,
+    'test_greedy': True,
+    'test_interval': 10000,
+    'test_nepisode': 32,
+    'thread_num': 32,
+    'use_cuda': True,
+    'use_tensorboard': True,
+    'weighted_head': False}
+
+{'state_shape': 322, 'obs_shape': 176, 'n_actions': 18, 'n_agents': 10, 'n_enemies': 12, 'episode_limit': 180, 'n_normal_actions': 6, 'n_allies': 9, 'state_ally_feats_size': 7, 'state_enemy_feats_size': 6, 'obs_component': [4, (12, 8), (9, 8), 4], 'state_component': [70, 72, 180], 'map_type': 'MMM'}
+&&&&&&&&&&&&&&&&&&&&&& hpns_rnn 102.728K
+ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& self.batch_device=cpu
+Mixer Size: 
+454.116K
+[INFO 17:20:21] my_main Beginning training for 10050000 timesteps
+[INFO 17:20:21] absl Launching SC2: /root/StarCraftII/Versions/Base69232/SC2_x64 -listen 127.0.0.1 -port 36383 -dataDir /root/StarCraftII/ -tempDir /tmp/sc-m1ubp2sy/
+[INFO 17:20:21] absl Launching SC2: /root/StarCraftII/Versions/Base69232/SC2_x64 -listen 127.0.0.1 -port 43223 -dataDir /root/StarCraftII/ -tempDir /tmp/sc-6jujio0z/
+[INFO 17:20:21] absl Launching SC2: /root/StarCraftII/Versions/Base69232/SC2_x64 -listen 127.0.0.1 -port 36213 -dataDir /root/StarCraftII/ -tempDir /tmp/sc-mj1336xt/
+[INFO 17:20:21] absl Launching SC2: /root/StarCraftII/Versions/Base69232/SC2_x64 -listen 127.0.0.1 -port 39877 -dataDir /root/StarCraftII/ -tempDir /tmp/sc-s66ac9i7/
+[INFO 17:20:21] absl Launching SC2: /root/StarCraftII/Versions/Base69232/SC2_x64 -listen 127.0.0.1 -port 34921 -dataDir /root/StarCraftII/ -tempDir /tmp/sc-owo2lkjx/
+[INFO 17:20:21] absl Launching SC2: /root/StarCraftII/Versions/Base69232/SC2_x64 -listen 127.0.0.1 -port 38833 -dataDir /root/StarCraftII/ -tempDir /tmp/sc-hr1q2f3a/
+[INFO 17:20:21] absl Launching SC2: /root/StarCraftII/Versions/Base69232/SC2_x64 -listen 127.0.0.1 -port 33915 -dataDir /root/StarCraftII/ -tempDir /tmp/sc-fn0exw19/
+[INFO 17:20:21] absl Launching SC2: /root/StarCraftII/Versions/Base69232/SC2_x64 -listen 127.0.0.1 -port 38197 -dataDir /root/StarCraftII/ -tempDir /tmp/sc-evq_fj13/
+[INFO 17:20:21] absl Connecting to: ws://127.0.0.1:38197/sc2api, attempt: 0, running: True
+[INFO 17:20:21] absl Connecting to: ws://127.0.0.1:43223/sc2api, attempt: 0, running: True
+[INFO 17:20:21] absl Connecting to: ws://127.0.0.1:36383/sc2api, attempt: 0, running: True
+[INFO 17:20:21] absl Connecting to: ws://127.0.0.1:38833/sc2api, attempt: 0, running: True
+[INFO 17:20:21] absl Connecting to: ws://127.0.0.1:39877/sc2api, attempt: 0, running: True
+[INFO 17:20:21] absl Connecting to: ws://127.0.0.1:36213/sc2api, attempt: 0, running: True
+[INFO 17:20:21] absl Connecting to: ws://127.0.0.1:34921/sc2api, attempt: 0, running: True
+[INFO 17:20:21] absl Connecting to: ws://127.0.0.1:33915/sc2api, attempt: 0, running: True
+Version: B69232 (SC2.4.6-Publish)
+Build: Oct 23 2018 01:43:04
+Version: B69232 (SC2.4.6-Publish)
+Build: Oct 23 2018 01:43:04
+Version: B69232 (SC2.4.6-Publish)
+Build: Oct 23 2018 01:43:04
+Version: B69232 (SC2.4.6-Publish)
+Version: B69232 (SC2.4.6-Publish)
+Version: B69232 (SC2.4.6-Publish)
+Build: Oct 23 2018 01:43:04
+Build: Oct 23 2018 01:43:04
+Build: Oct 23 2018 01:43:04
+Version: B69232 (SC2.4.6-Publish)
+Build: Oct 23 2018 01:43:04
+Version: B69232 (SC2.4.6-Publish)
+Build: Oct 23 2018 01:43:04
+Command Line: '"/root/StarCraftII/Versions/Base69232/SC2_x64" -listen 127.0.0.1 -port 34921 -dataDir /root/StarCraftII/ -tempDir /tmp/sc-owo2lkjx/'
+Command Line: '"/root/StarCraftII/Versions/Base69232/SC2_x64" -listen 127.0.0.1 -port 36383 -dataDir /root/StarCraftII/ -tempDir /tmp/sc-m1ubp2sy/'
+Command Line: '"/root/StarCraftII/Versions/Base69232/SC2_x64" -listen 127.0.0.1 -port 43223 -dataDir /root/StarCraftII/ -tempDir /tmp/sc-6jujio0z/'
+Command Line: '"/root/StarCraftII/Versions/Base69232/SC2_x64" -listen 127.0.0.1 -port 33915 -dataDir /root/StarCraftII/ -tempDir /tmp/sc-fn0exw19/'
+Command Line: '"/root/StarCraftII/Versions/Base69232/SC2_x64" -listen 127.0.0.1 -port 38197 -dataDir /root/StarCraftII/ -tempDir /tmp/sc-evq_fj13/'
+Command Line: '"/root/StarCraftII/Versions/Base69232/SC2_x64" -listen 127.0.0.1 -port 36213 -dataDir /root/StarCraftII/ -tempDir /tmp/sc-mj1336xt/'
+Command Line: '"/root/StarCraftII/Versions/Base69232/SC2_x64" -listen 127.0.0.1 -port 39877 -dataDir /root/StarCraftII/ -tempDir /tmp/sc-s66ac9i7/'
+Command Line: '"/root/StarCraftII/Versions/Base69232/SC2_x64" -listen 127.0.0.1 -port 38833 -dataDir /root/StarCraftII/ -tempDir /tmp/sc-hr1q2f3a/'
+Starting up...
+Starting up...
+Starting up...
+Starting up...
+Starting up...
+Starting up...
+Starting up...
+Starting up...
+Startup Phase 1 complete
+Startup Phase 1 complete
+Startup Phase 1 complete
+Startup Phase 1 complete
+Startup Phase 1 complete
+Startup Phase 1 complete
+Startup Phase 1 complete
+Startup Phase 1 complete
+[INFO 17:20:22] absl Connecting to: ws://127.0.0.1:38833/sc2api, attempt: 1, running: True
+[INFO 17:20:22] absl Connecting to: ws://127.0.0.1:34921/sc2api, attempt: 1, running: True
+[INFO 17:20:22] absl Connecting to: ws://127.0.0.1:43223/sc2api, attempt: 1, running: True
+[INFO 17:20:22] absl Connecting to: ws://127.0.0.1:36383/sc2api, attempt: 1, running: True
+[INFO 17:20:22] absl Connecting to: ws://127.0.0.1:38197/sc2api, attempt: 1, running: True
+[INFO 17:20:22] absl Connecting to: ws://127.0.0.1:33915/sc2api, attempt: 1, running: True
+[INFO 17:20:22] absl Connecting to: ws://127.0.0.1:36213/sc2api, attempt: 1, running: True
+[INFO 17:20:22] absl Connecting to: ws://127.0.0.1:39877/sc2api, attempt: 1, running: True
+[INFO 17:20:23] absl Connecting to: ws://127.0.0.1:36383/sc2api, attempt: 2, running: True
+[INFO 17:20:23] absl Connecting to: ws://127.0.0.1:43223/sc2api, attempt: 2, running: True
+[INFO 17:20:23] absl Connecting to: ws://127.0.0.1:34921/sc2api, attempt: 2, running: True
+[INFO 17:20:23] absl Connecting to: ws://127.0.0.1:38833/sc2api, attempt: 2, running: True
+[INFO 17:20:23] absl Connecting to: ws://127.0.0.1:38197/sc2api, attempt: 2, running: True
+[INFO 17:20:23] absl Connecting to: ws://127.0.0.1:33915/sc2api, attempt: 2, running: True
+[INFO 17:20:23] absl Connecting to: ws://127.0.0.1:36213/sc2api, attempt: 2, running: True
+[INFO 17:20:23] absl Connecting to: ws://127.0.0.1:39877/sc2api, attempt: 2, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:36213
+Listening on: 127.0.0.1:39877
+Listening on: 127.0.0.1:33915
+Listening on: 127.0.0.1:38833
+Startup Phase 3 complete. Ready for commands.
+Startup Phase 3 complete. Ready for commands.
+Startup Phase 3 complete. Ready for commands.
+Startup Phase 3 complete. Ready for commands.
+Listening on: 127.0.0.1:38197
+Startup Phase 3 complete. Ready for commands.
+Listening on: 127.0.0.1:43223
+Listening on: 127.0.0.1:34921
+Startup Phase 3 complete. Ready for commands.
+Startup Phase 3 complete. Ready for commands.
+Listening on: 127.0.0.1:36383
+Startup Phase 3 complete. Ready for commands.
+[INFO 17:20:24] absl Connecting to: ws://127.0.0.1:43223/sc2api, attempt: 3, running: True
+[INFO 17:20:24] absl Connecting to: ws://127.0.0.1:36383/sc2api, attempt: 3, running: True
+[INFO 17:20:24] absl Connecting to: ws://127.0.0.1:38833/sc2api, attempt: 3, running: True
+[INFO 17:20:24] absl Connecting to: ws://127.0.0.1:34921/sc2api, attempt: 3, running: True
+[INFO 17:20:24] absl Connecting to: ws://127.0.0.1:38197/sc2api, attempt: 3, running: True
+[INFO 17:20:24] absl Connecting to: ws://127.0.0.1:33915/sc2api, attempt: 3, running: True
+[INFO 17:20:24] absl Connecting to: ws://127.0.0.1:39877/sc2api, attempt: 3, running: True
+[INFO 17:20:24] absl Connecting to: ws://127.0.0.1:36213/sc2api, attempt: 3, running: True
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Entering load game phase.
+Requesting to join a single player game
+Launching next game.
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Requesting to join a single player game
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configuring interface options
+Configure: render interface disabled
+Configure: raw interface enabled
+Requesting to join a single player game
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Requesting to join a single player game
+Configuring interface options
+Configure: render interface disabled
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: raw interface enabled
+Configure: render interface disabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Entering load game phase.
+Launching next game.
+Entering load game phase.
+Launching next game.
+Entering load game phase.
+Entering load game phase.
+Launching next game.
+Launching next game.
+Entering load game phase.
+Launching next game.
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Entering load game phase.
+Launching next game.
+Entering load game phase.
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 2
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 4
+Next launch phase started: 4
+Next launch phase started: 4
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 5
+Next launch phase started: 5
+Next launch phase started: 8
+Next launch phase started: 6
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 7
+Next launch phase started: 8
+Next launch phase started: 8
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 5
+Next launch phase started: 7
+Next launch phase started: 6
+Next launch phase started: 8
+Next launch phase started: 7
+Next launch phase started: 8
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Next launch phase started: 4
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Game has started.
+Game has started.
+Game has started.
+Game has started.
+Game has started.
+Game has started.
+Game has started.
+Sending ResponseJoinGame
+Sending ResponseJoinGame
+Sending ResponseJoinGame
+Sending ResponseJoinGame
+Sending ResponseJoinGame
+Sending ResponseJoinGame
+Sending ResponseJoinGame
+Sending ResponseJoinGame
+/home/HetRobust/src/components/episode_buffer.py:109: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at ../torch/csrc/utils/tensor_new.cpp:278.)
+  v = th.tensor(v, dtype=dtype, device=self.device)
+defaultdict(<function Logger.__init__.<locals>.<lambda> at 0x739ad4985630>, {'return_min': [(305, 1.2328514004149376)], 'return_max': [(305, 2.296210451244813)], 'return_mean': [(305, 1.6681105744294604)], 'return_std': [(305, 0.39266804466648086)], 'dead_enemies_mean': [(305, 0.0)], 'dead_allies_mean': [(305, 10.0)], 'battle_won_mean': [(305, 0.0)], 'ep_length_mean': [(305, 38.125)]})
+/home/HetRobust/src/components/episode_buffer.py:109: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  v = th.tensor(v, dtype=dtype, device=self.device)
+[INFO 17:20:38] my_main t_env: 305 / 10050000
+[INFO 17:20:38] my_main Estimated time left: 4 hours, 37 minutes, 20 seconds. Time passed: 17 seconds
+defaultdict(<function Logger.__init__.<locals>.<lambda> at 0x739ad4985630>, {'return_min': [(305, 1.2328514004149376)], 'return_max': [(305, 2.296210451244813)], 'return_mean': [(305, 1.6681105744294604)], 'return_std': [(305, 0.39266804466648086)], 'dead_enemies_mean': [(305, 0.0)], 'dead_allies_mean': [(305, 10.0)], 'battle_won_mean': [(305, 0.0)], 'ep_length_mean': [(305, 38.125)], 'epsilon': [(305, 1.0)], 'test_return_min': [(305, 1.4836050959543565)], 'test_return_max': [(305, 3.9323537992738586)], 'test_return_mean': [(305, 2.3316176798333768)], 'test_return_std': [(305, 0.604601588125779)], 'test_dead_enemies_mean': [(305, 0.0)], 'test_dead_allies_mean': [(305, 8.09375)], 'test_battle_won_mean': [(305, 0.0)], 'test_ep_length_mean': [(305, 137.90625)]})
+当前全局时间步为 4865
+obs_error: tensor(0.0165, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.1419, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 5.494306564331055 seconds
+Avg cost 5.494907975196838 seconds
+当前全局时间步为 5182
+obs_error: tensor(0.0164, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0252, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 4.06322447458903 seconds
+Avg cost 3.3473899960517883 seconds
+当前全局时间步为 5480
+obs_error: tensor(0.0166, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0477, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 2.8868696212768556 seconds
+Avg cost 2.579859534899394 seconds
+当前全局时间步为 5759
+obs_error: tensor(0.0151, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0338, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 2.3515059947967534 seconds
+Avg cost 2.1802448332309727 seconds
+当前全局时间步为 6074
+obs_error: tensor(0.0175, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0203, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 2.032354354858399 seconds
+Avg cost 1.9140441179275516 seconds
+当前全局时间步为 6370
+obs_error: tensor(0.0132, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0169, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.8317341371016072 seconds
+Avg cost 1.763144373893738 seconds
+当前全局时间步为 6664
+obs_error: tensor(0.0153, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0159, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.6945028121654806 seconds
+Avg cost 1.635668924876622 seconds
+当前全局时间步为 6978
+obs_error: tensor(0.0118, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0161, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.5878832181294762 seconds
+Avg cost 1.5460725575685503 seconds
+当前全局时间步为 7290
+obs_error: tensor(0.0124, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0145, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.51124223540811 seconds
+Avg cost 1.4802830881542632 seconds
+当前全局时间步为 7568
+obs_error: tensor(0.0120, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0145, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.4511702437149854 seconds
+[INFO 17:23:02] my_main Updated target network
+Avg cost 1.4252390861511233 seconds
+当前全局时间步为 7861
+obs_error: tensor(0.0105, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0337, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.4059962431589765 seconds
+Avg cost 1.3885037573901093 seconds
+当前全局时间步为 8142
+obs_error: tensor(0.0125, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0163, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.366402978482454 seconds
+Avg cost 1.3461448550224309 seconds
+当前全局时间步为 8441
+obs_error: tensor(0.0104, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0091, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.3387562084198001 seconds
+Avg cost 1.331937148020818 seconds
+当前全局时间步为 8730
+obs_error: tensor(0.0097, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0229, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.3253411981794572 seconds
+Avg cost 1.3192170347486225 seconds
+当前全局时间步为 9055
+obs_error: tensor(0.0092, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0185, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.313028828851108 seconds
+Avg cost 1.3072537978490195 seconds
+当前全局时间步为 9364
+obs_error: tensor(0.0091, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0082, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.299645869962631 seconds
+Avg cost 1.292514204978943 seconds
+当前全局时间步为 9655
+obs_error: tensor(0.0098, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0076, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.2815294193499018 seconds
+Avg cost 1.2711914357017071 seconds
+当前全局时间步为 9966
+obs_error: tensor(0.0095, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0104, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.2601432868412565 seconds
+Avg cost 1.2497095068295798 seconds
+当前全局时间步为 10267
+obs_error: tensor(0.0080, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0120, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.2400795640172186 seconds
+Avg cost 1.2309569057665375 seconds
+[INFO 17:23:44] my_main Recent Stats | t_env:      10267 | Episode:      272
+battle_won_mean:           0.0000	dead_allies_mean:         10.0000	dead_enemies_mean:         0.0000	ep_length_mean:           38.1250
+episode_in_buffer:       272.0000	epsilon:                   1.0000	grad_norm:                 1.7042	loss_td:                   0.1422
+q_taken_mean:             -0.0172	return_max:                2.2962	return_mean:               1.6681	return_min:                1.2329
+return_std:                0.3927	target_mean:               0.0272	td_error_abs:              0.1419	test_battle_won_mean:      0.0000
+test_dead_allies_mean:     8.0938	test_dead_enemies_mean:    0.0000	test_ep_length_mean:     137.9062	test_return_max:           3.9324
+test_return_mean:          2.3316	test_return_min:           1.4836	test_return_std:           0.6046	
+defaultdict(<function Logger.print_recent_stats.<locals>.<lambda> at 0x739b3a16b1c0>, {'return_min': [(10579, 0.7737778786307055)], 'return_max': [(10579, 3.3070215248962658)], 'return_mean': [(10579, 1.8584277260323863)], 'return_std': [(10579, 0.4235348479754831)], 'dead_enemies_mean': [(10579, 0.0)], 'dead_allies_mean': [(10579, 9.816176470588236)], 'battle_won_mean': [(10579, 0.0)], 'ep_length_mean': [(10579, 37.77205882352941)]})
+当前全局时间步为 10579
+obs_error: tensor(0.0067, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0106, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.2269151027386007 seconds
+Avg cost 1.2230759501457216 seconds
+[INFO 17:23:49] my_main t_env: 10579 / 10050000
+[INFO 17:23:49] my_main Estimated time left: 2 days, 3 hours, 48 minutes, 13 seconds. Time passed: 3 minutes, 27 seconds
+defaultdict(<function Logger.print_recent_stats.<locals>.<lambda> at 0x739b3a16b1c0>, {'return_min': [(10579, 0.7737778786307055)], 'return_max': [(10579, 3.3070215248962658)], 'return_mean': [(10579, 1.8584277260323863)], 'return_std': [(10579, 0.4235348479754831)], 'dead_enemies_mean': [(10579, 0.0)], 'dead_allies_mean': [(10579, 9.816176470588236)], 'battle_won_mean': [(10579, 0.0)], 'ep_length_mean': [(10579, 37.77205882352941)], 'epsilon': [(10579, 0.9024635)], 'test_return_min': [(10579, 1.2948651452282156)], 'test_return_max': [(10579, 4.0546875)], 'test_return_mean': [(10579, 2.5330153342599195)], 'test_return_std': [(10579, 0.5129034335405198)], 'test_dead_enemies_mean': [(10579, 0.0)], 'test_dead_allies_mean': [(10579, 9.09375)], 'test_battle_won_mean': [(10579, 0.0)], 'test_ep_length_mean': [(10579, 105.4375)]})
+当前全局时间步为 10904
+obs_error: tensor(0.0064, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0078, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.2160052962419465 seconds
+Avg cost 1.2092718567167011 seconds
+当前全局时间步为 11204
+obs_error: tensor(0.0062, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0058, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.2027989542761517 seconds
+Avg cost 1.1966207786039875 seconds
+当前全局时间步为 11513
+obs_error: tensor(0.0054, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0068, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.1930734422471792 seconds
+Avg cost 1.189681032429571 seconds
+当前全局时间步为 11850
+obs_error: tensor(0.0058, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0088, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.185007085191443 seconds
+Avg cost 1.1805283576250079 seconds
+当前全局时间步为 12173
+obs_error: tensor(0.0066, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0089, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.17271968296596 seconds
+Avg cost 1.1652238082885744 seconds
+当前全局时间步为 12551
+obs_error: tensor(0.0055, device='cuda:0', grad_fn=<MeanBackward0>)
+action loss: tensor(0., device='cuda:0', grad_fn=<MeanBackward0>)
+TD loss: tensor(0.0069, device='cuda:0', grad_fn=<DivBackward0>)
+Avg cost 1.16029803425658 seconds
+Avg cost 1.1555621348894562 seconds

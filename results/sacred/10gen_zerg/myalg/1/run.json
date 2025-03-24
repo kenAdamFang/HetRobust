@@ -1,0 +1,112 @@
+{
+  "artifacts": [],
+  "command": "my_main",
+  "experiment": {
+    "base_dir": "/home/HetRobust/src",
+    "dependencies": [
+      "numpy==1.26.4",
+      "PyYAML==6.0.2",
+      "sacred==0.8.6",
+      "torch==2.5.1"
+    ],
+    "mainfile": "main.py",
+    "name": "pymarl",
+    "repositories": [],
+    "sources": [
+      [
+        "main.py",
+        "_sources/main_16639db3fa0ed93797d692eb92258d0a.py"
+      ],
+      [
+        "utils/logging.py",
+        "_sources/logging_ce9a261c391cbeae67129d3d806d06da.py"
+      ]
+    ]
+  },
+  "heartbeat": "2025-03-24T09:27:55.664735",
+  "host": {
+    "ENV": {},
+    "cpu": "Intel(R) Xeon(R) CPU E5-2678 v3 @ 2.50GHz",
+    "gpus": {
+      "driver_version": "535.230.02",
+      "gpus": [
+        {
+          "model": "NVIDIA GeForce RTX 2080 Ti",
+          "persistence_mode": true,
+          "total_memory": 11264
+        }
+      ]
+    },
+    "hostname": "fangwenhao-Default-string",
+    "os": [
+      "Linux",
+      "Linux-6.8.0-52-generic-x86_64-with-glibc2.35"
+    ],
+    "python_version": "3.10.15"
+  },
+  "meta": {
+    "command": "my_main",
+    "config_updates": {
+      "action_tamper": 0.05,
+      "batch_size": 64,
+      "batch_size_run": 8,
+      "buffer_size": 5000,
+      "epsilon_anneal_time": 100000,
+      "n_agents_to_tamper": 1,
+      "n_groups": 3,
+      "obs_agent_id": true,
+      "obs_last_action": false,
+      "obs_tamper": [
+        0.8,
+        0.5
+      ],
+      "t_max": 10050000,
+      "td_lambda": 0.6
+    },
+    "named_configs": [],
+    "options": {
+      "--beat-interval": null,
+      "--capture": null,
+      "--comment": null,
+      "--debug": false,
+      "--enforce_clean": false,
+      "--file_storage": null,
+      "--force": false,
+      "--help": false,
+      "--id": null,
+      "--loglevel": null,
+      "--mongo_db": null,
+      "--name": null,
+      "--pdb": false,
+      "--print-config": false,
+      "--priority": null,
+      "--queue": false,
+      "--s3": null,
+      "--sql": null,
+      "--tiny_db": null,
+      "--unobserved": false,
+      "COMMAND": null,
+      "UPDATE": [
+        "obs_agent_id=True",
+        "obs_last_action=False",
+        "batch_size_run=8",
+        "buffer_size=5000",
+        "t_max=10050000",
+        "epsilon_anneal_time=100000",
+        "batch_size=64",
+        "td_lambda=0.6",
+        "n_groups=3",
+        "obs_tamper=[0.8,0.5]",
+        "action_tamper=0.05",
+        "n_agents_to_tamper=1"
+      ],
+      "help": false,
+      "with": true
+    }
+  },
+  "resources": [],
+  "result": null,
+  "start_time": "2025-03-24T09:25:52.058196",
+  "status": "INTERRUPTED",
+  "stop_time": "2025-03-24T09:27:55.669239"
+}

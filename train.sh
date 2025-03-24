@@ -1,0 +1,33 @@
+python -u src/main.py --config=myalg --env-config=sc2 with env_args.map_name=3s5z_vs_3s6z obs_agent_id=True obs_last_action=False runner=parallel batch_size_run=4 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=128 td_lambda=0.6 n_groups=2
+python -u src/main.py --config=myalg --env-config=sc2 with env_args.map_name=1c3s5z obs_agent_id=True obs_last_action=False runner=parallel batch_size_run=4 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=128 td_lambda=0.6 n_groups=3
+python -u src/main.py --config=myalg --env-config=sc2 with env_args.map_name=MMM2 obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=128 td_lambda=0.6 n_groups=3 tamper=True
+
+python -u src/main.py --config=myalg --env-config=sc2 with env_args.map_name=MMM2 obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=64 td_lambda=0.6 n_groups=3 tamper=True obs_tamper=[0.2,0.02] action_tamper=0.01 n_agents_to_tamper=1
+python -u src/main.py --config=myalg --env-config=sc2 with env_args.map_name=MMM2 obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=64 td_lambda=0.6 n_groups=3 tamper=True obs_tamper=[0.8,0.5] action_tamper=0.1 n_agents_to_tamper=1
+python -u src/main.py --config=myalg --env-config=sc2 with env_args.map_name=MMM2 obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=64 td_lambda=0.6 n_groups=3 tamper=True obs_tamper=[1,0.9] action_tamper=1 n_agents_to_tamper=1
+
+python -u src/main.py --config=myalg --env-config=sc2_v2_protoss_5_vs_5 with obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=64 td_lambda=0.6 n_groups=3 obs_tamper=[0.8,0.5] action_tamper=0.05 n_agents_to_tamper=1
+python -u src/main.py --config=myalg --env-config=sc2_v2_terran_5_vs_5 with obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=64 td_lambda=0.6 n_groups=3 obs_tamper=[0.8,0.5] action_tamper=0.05 n_agents_to_tamper=1
+python -u src/main.py --config=myalg --env-config=sc2_v2_zerg_5_vs_5 with obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=64 td_lambda=0.6 n_groups=3 obs_tamper=[0.8,0.5] action_tamper=0.05 n_agents_to_tamper=1
+
+python -u src/main.py --config=myalg --env-config=sc2_v2_protoss_10_vs_10 with obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=64 td_lambda=0.6 n_groups=3 obs_tamper=[0.8,0.5] action_tamper=0.1 n_agents_to_tamper=1
+python -u src/main.py --config=myalg --env-config=sc2_v2_terran_10_vs_10 with obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=64 td_lambda=0.6 n_groups=3 obs_tamper=[0.8,0.5] action_tamper=0.1 n_agents_to_tamper=1
+python -u src/main.py --config=myalg --env-config=sc2_v2_zerg_10_vs_10 with obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=64 td_lambda=0.6 n_groups=3 obs_tamper=[0.8,0.5] action_tamper=0.1 n_agents_to_tamper=1
+
+python -u src/main.py --config=myalg --env-config=sc2_v2_protoss_20_vs_20 with obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=64 td_lambda=0.6 n_groups=3 obs_tamper=[0.8,0.5] action_tamper=0.2 n_agents_to_tamper=1
+python -u src/main.py --config=myalg --env-config=sc2_v2_terran_20_vs_20 with obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=64 td_lambda=0.6 n_groups=3 obs_tamper=[0.8,0.5] action_tamper=0.2 n_agents_to_tamper=1
+python -u src/main.py --config=myalg --env-config=sc2_v2_zerg_20_vs_20 with obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=64 td_lambda=0.6 n_groups=3 obs_tamper=[0.8,0.5] action_tamper=0.2 n_agents_to_tamper=1
+
+python -u src/main.py --config=myalg --env-config=sc2_v2_terran_10_vs_10 with obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=64 td_lambda=0.6 n_groups=3 obs_tamper=[0.01,0.1] action_tamper=0.01 n_agents_to_tamper=1
+python -u src/main.py --config=myalg --env-config=sc2_v2_terran_10_vs_10 with obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=64 td_lambda=0.6 n_groups=3 obs_tamper=[0.5,0.3] action_tamper=0.08 n_agents_to_tamper=1
+python -u src/main.py --config=myalg --env-config=sc2_v2_terran_10_vs_10 with obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=64 td_lambda=0.6 n_groups=3 obs_tamper=[1.0,0.8] action_tamper=0.5 n_agents_to_tamper=1
+python -u src/main.py --config=myalg --env-config=sc2_v2_terran_10_vs_10 with obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=64 td_lambda=0.6 n_groups=3 obs_tamper=[1.0,0.9] action_tamper=1.0 n_agents_to_tamper=1
+
+python -u src/main.py --config=myalg --env-config=sc2_v2_terran_10_vs_10_1T with obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=64 td_lambda=0.6 n_groups=1 obs_tamper=[0.8,0.5] action_tamper=0.1 n_agents_to_tamper=1
+python -u src/main.py --config=myalg --env-config=sc2_v2_terran_10_vs_10_2T with obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=64 td_lambda=0.6 n_groups=2 obs_tamper=[0.8,0.5] action_tamper=0.1 n_agents_to_tamper=1
+python -u src/main.py --config=myalg --env-config=sc2_v2_terran_9_vs_9 with obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=64 td_lambda=0.6 n_groups=3 obs_tamper=[0.8,0.5] action_tamper=0.09 n_agents_to_tamper=1
+python -u src/main.py --config=myalg --env-config=sc2_v2_terran_8_vs_8 with obs_agent_id=True obs_last_action=False batch_size_run=8 buffer_size=5000 t_max=10050000 epsilon_anneal_time=100000 batch_size=64 td_lambda=0.6 n_groups=3 obs_tamper=[0.8,0.5] action_tamper=0.08 n_agents_to_tamper=1
+
+
+
+
