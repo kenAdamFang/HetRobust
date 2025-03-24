@@ -20,7 +20,7 @@ Before running HetRobust, ensure your environment is properly configured.
 1. **Environment Setup**:
    - Execute the following command to install all necessary dependencies:
      ```bash
-     source pymarl_all.sh
+     source all_pymarl.sh
      ```
    - This script configures the required libraries and tools, ensuring compatibility with the PyMARL3 framework.
 
