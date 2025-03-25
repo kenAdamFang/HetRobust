@@ -25,7 +25,7 @@ Before running HetRobust, ensure your environment is properly configured.
    - This script configures the required libraries and tools, ensuring compatibility with the PyMARL3 framework.
 
 2. **Dependency Check**:
-   - Verify that Python 3.8+ is installed, along with Git and other required packages.
+   - Verify that Python 3.9 is installed, along with Git and other required packages.
 
 ### Running the Training
 Once the environment is set up, you can launch HetRobust training and evaluation for SMACv1/v2 using the provided script:
