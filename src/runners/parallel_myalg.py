@@ -151,7 +151,7 @@ class ParallelMyAlg:
             actionsNoObsNoise_real = actionsNoObsNoise
             prob_tamperAction = self.args.action_tamper
             n_agents_to_tamper = self.args.n_agents_to_tamper
-            actionsNoObsNoise_tampered = self.tamper_action(tamper_avail_actions[envs_not_terminated], actionsNoObsNoise, n_agents_to_tamper, prob_tamperAction)
+            actionsNoObsNoise = self.tamper_action(tamper_avail_actions[envs_not_terminated], actionsNoObsNoise, n_agents_to_tamper, prob_tamperAction)
             actions = self.tamper_action(tamper_avail_actions[envs_not_terminated], actions, n_agents_to_tamper, prob_tamperAction)
             cpu_actions = actions.to("cpu").numpy()
             cpu_actionsNoObsNoise = actionsNoObsNoise.to("cpu").numpy()
