@@ -5,7 +5,7 @@
 #git clone git@github.com:tjuHaoXiaotian/pymarl3.git
 export PYMARL3_CODE_DIR=$(pwd)
 old_dir=$(pwd)
-# 0.配置基础环境,前提是已经到源码文件夹
+# 0.configure basic env, make sure cd to the project dir
 conda init
 source ~/.bashrc
 conda create -n pymarl python=3.9
