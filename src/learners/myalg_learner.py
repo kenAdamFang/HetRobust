@@ -6,6 +6,13 @@ import torch
 from torch.optim import RMSprop, Adam
 
 from components.episode_buffer import EpisodeBatch
+from modules.mixers.nmix import Mixer
+from modules.mixers.qatten import QattenMixer
+from modules.mixers.vdn import VDNMixer
+from modules.mixers.qgroupmix import GroupMixer
+from modules.mixers.qgroupmix_atten import GroupMixerAtten
+from modules.mixers.qgattenmix import GAttenMixer
+from modules.mixers.qghypermix import GHyperMixer
 from modules.mixers.myalg_mixer import MyAlgMixer
 from utils.rl_utils import build_td_lambda_targets, build_q_lambda_targets
 from utils.th_utils import get_parameters_num
@@ -37,11 +44,14 @@ def calculate_n_step_td_target(mixer, target_mixer, target_max_qvals, batch, rew
         # Set target mixing net to testing mode
         target_mixer.eval()
         # Calculate n-step Q-Learning targets
-        target_max_qvals = target_mixer(target_max_qvals, batch["state"], batch["obs"])
+        if mixer == "myalg_mixer":
+            target_max_qvals = target_mixer(target_max_qvals, batch["state"], batch["obs"])
+        else:
+            target_max_qvals = target_mixer(target_max_qvals, batch["state"])
 
         if q_lambda:
             raise NotImplementedError
-            qvals = th.gather(target_mac_out, 3, batch["actionsNoNoise_real"]).squeeze(3)
+            qvals = th.gather(target_mac_out, 3, batch["actions"]).squeeze(3)
             qvals = target_mixer(qvals, batch["state"])
             targets = build_q_lambda_targets(rewards, terminated, mask, target_max_qvals, qvals, gamma, td_lambda)
         else:
@@ -60,7 +70,16 @@ class MyAlgLearner:
         self.device = th.device('cuda' if args.use_cuda else 'cpu')
         self.params = list(mac.parameters())
 
-        self.mixer = MyAlgMixer(args)
+        if args.mixer == "qatten":
+            self.mixer = QattenMixer(args)
+        elif args.mixer == "vdn":
+            self.mixer = VDNMixer()
+        elif args.mixer == "qmix":  # 31.521K
+            self.mixer = Mixer(args)
+        elif args.mixer == "myalg_mixer":
+            self.mixer = MyAlgMixer(args)
+        else:
+            raise "mixer error"
 
         self.target_mixer = copy.deepcopy(self.mixer)
         self.params += list(self.mixer.parameters())
@@ -91,7 +110,7 @@ class MyAlgLearner:
 
     def compute_kl_divergence(self, p: th.Tensor, q: th.Tensor, dim: int = -1, epsilon: float = 1e-10) -> th.Tensor:
         if p.shape != q.shape:
-            raise ValueError(f"张量形状不匹配: p.shape={p.shape}, q.shape={q.shape}")
+            raise ValueError(f"tensor shape not matching: p.shape={p.shape}, q.shape={q.shape}")
         global_min = min(th.min(p), th.min(q))
         if global_min < 0:
             p_shifted = p - global_min + epsilon
@@ -105,9 +124,9 @@ class MyAlgLearner:
         return kl_div
     def compute_MSE(self, p: torch.Tensor, q: torch.Tensor, dim: int = -1) -> torch.Tensor:
         if p.shape != q.shape:
-            raise ValueError(f"张量形状不匹配: p.shape={p.shape}, q.shape={q.shape}")
+            raise ValueError(f"tensor shape not matching: p.shape={p.shape}, q.shape={q.shape}")
         if p.shape[dim] != 1:
-            raise ValueError(f"最后一维大小必须为1，但得到 {p.shape[dim]}")
+            raise ValueError(f"last d should be 1, but get {p.shape[dim]}")
         diff_squared = (p - q) ** 2
         MSE_dist = torch.mean(torch.sum(diff_squared, dim=dim))
         MSE_dist = MSE_dist.unsqueeze(dim)
@@ -116,11 +135,9 @@ class MyAlgLearner:
         start_time = time.time()
         if self.args.use_cuda and str(self.mac.get_device()) == "cpu":
             self.mac.cuda()
-        print("当前全局时间步为", t_env)
         rewards = batch["reward"][:, :-1]
         actions = batch["actions"][:, :-1]
-        actionsNoObsNoise = batch["actionsNoObsNoise"][:, :-1]
-        actionsNoObsNoise_real = batch["actionsNoObsNoise_real"][:, :-1]
+        actions_real = batch["actions_real"][:, :-1]
         terminated = batch["terminated"][:, :-1].float()
         mask = batch["filled"][:, :-1].float()
         mask[:, 1:] = mask[:, 1:] * (1 - terminated[:, :-1])
@@ -128,7 +145,7 @@ class MyAlgLearner:
     
         self.mac.set_train_mode()
         self.mac.init_hidden(batch.batch_size)
-        n_actions = batch["avail_actions"].shape[-1]
+        n_actions = batch["avail_actions"].shape[-1]  
         n_agents = batch["avail_actions"].shape[-2]
         mac_out = th.zeros(batch.batch_size, batch.max_seq_length, n_agents, n_actions, device=self.device)
         mac_out_obsReal = th.zeros_like(mac_out)
@@ -143,7 +160,6 @@ class MyAlgLearner:
             mac_out[:, t] = self.mac.forward(batch, t=t)
         mac_out[avail_actions == 0] = -9999999
         obs_error = th.mean((mac_out - mac_out_obsReal) ** 2)
-        print("obs_error:", obs_error)
     
         chosen_action_qvals = th.gather(mac_out[:, :-1], dim=3, index=actions).squeeze(3)
         
@@ -155,30 +171,32 @@ class MyAlgLearner:
             cur_max_actions = mac_out.max(dim=3, keepdim=True)[1]
             target_max_qvals = th.gather(target_mac_out, 3, cur_max_actions).squeeze(3)
     
-            targets = calculate_n_step_td_target(self.args.mixer, self.target_mixer, target_max_qvals, batch, rewards, terminated, mask, self.args.gamma, self.args.td_lambda)
+            if self.args.mixer.find("qmix") != -1 and self.enable_parallel_computing:
+                targets = self.pool.apply_async(calculate_n_step_td_target, (self.args.mixer, self.target_mixer, target_max_qvals, batch, rewards, terminated, mask, self.args.gamma, self.args.td_lambda, True, self.args.thread_num, False, None)).get()
+            else:
+                targets = calculate_n_step_td_target(self.args.mixer, self.target_mixer, target_max_qvals, batch, rewards, terminated, mask, self.args.gamma, self.args.td_lambda)
     
         self.mixer.train()
 
-        chosen_action_qvals = th.gather(mac_out[:, :-1], dim=3, index=actionsNoObsNoise).squeeze(3)
-        chosen_action_qvals_real = th.gather(mac_out[:, :-1], dim=3, index=actionsNoObsNoise_real).squeeze(3)
-        
-        chosen_action_qvals = self.mixer(chosen_action_qvals, batch["state"][:, :-1], batch["obs"][:, :-1])
-        chosen_action_qvals_real = self.mixer(chosen_action_qvals_real, batch["state"][:, :-1], batch["obs"][:, :-1])
-        
-        loss_actionTamper = self.compute_MSE(chosen_action_qvals, chosen_action_qvals_real)
-        action_loss = loss_actionTamper.mean()
-        td_error = chosen_action_qvals_real - targets
+        if self.args.mixer == "myalg_mixer":
+            chosen_action_qvals = self.mixer(chosen_action_qvals, batch["state"][:, :-1], batch["obs"][:, :-1])
+        else:
+            chosen_action_qvals = self.mixer(chosen_action_qvals, batch["state"][:, :-1])
+
+        td_error = chosen_action_qvals - targets
         masked_td_error = 0.5 * td_error.pow(2) * mask.expand_as(td_error)
         TD_loss = masked_td_error.sum() / mask.sum()
-        print("action loss:", action_loss)
-        print("TD loss:", TD_loss)
         
-        loss = TD_loss + self.obsLossWeight * obs_error + self.actionLossWeight * action_loss
+        loss = TD_loss + self.obsLossWeight * obs_error
         self.optimiser.zero_grad()
         loss.backward()
         grad_norm = th.nn.utils.clip_grad_norm_(self.params, self.args.grad_norm_clip)
         self.optimiser.step()
     
+        self.train_t += 1
+        self.avg_time += (time.time() - start_time - self.avg_time) / self.train_t
+        print("Avg cost {} seconds".format(self.avg_time))
+        
         if (episode_num - self.last_target_update_episode) / self.args.target_update_interval >= 1.0:
             self._update_targets()
             self.last_target_update_episode = episode_num
